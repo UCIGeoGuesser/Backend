@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "dependencies": [
+    "asio",
+    "crow",
+    "curl",
+    "libpqxx",
+    "nlohmann-json",
+    "openssl"
+  ],
+  "overrides": [
+    {
+      "name": "libpq",
+      "version": "16.4"
+    },
+    {
+      "name": "libpqxx",
+      "version": "7.10.5"
+    }
+  ]
+}

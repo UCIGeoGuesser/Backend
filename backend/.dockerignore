@@ -1,0 +1,6 @@
+build/
+CMakeFiles/
+vcpkg_installed/
+.vcpkg-root
+_deps/
+.env
