@@ -4,7 +4,7 @@ C++ API (Crow) and Postgres database for the UCI campus guessing game. Images ar
 
 Frontend repo: [UCIGeoGuesser/frontend](https://github.com/UCIGeoGuesser/frontend)
 
-## Setup
+### Setup
 
 Install Docker, then add a `.env` file in `backend/`:
 
@@ -25,7 +25,7 @@ The API listens on port `18080`. Postgres listens on port `5432`.
 
 See `backend/README.md` for run details, `backend/db/README.md` for the database, and `backend/api_documentation.md` for request and response schemas.
 
-## Deploy
+### Deploy
 
 Pushes to `main` run `.github/workflows/deploy.yaml`, which SSHes to the Oracle Cloud VM and runs `scripts/deploy-backend.sh`.
 
