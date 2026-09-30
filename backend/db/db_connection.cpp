@@ -11,32 +11,7 @@ std::string get_database_url() {
         throw std::runtime_error("DATABASE_URL environment variable not set.");
     }
 
-    std::string url(db_url);
-    auto is_quote_or_space = [](unsigned char c) {
-        return c == '"' || c == '\'' || std::isspace(c);
-    };
-    while (!url.empty() && is_quote_or_space(static_cast<unsigned char>(url.front()))) {
-        url.erase(url.begin());
-    }
-    while (!url.empty() && is_quote_or_space(static_cast<unsigned char>(url.back()))) {
-        url.pop_back();
-    }
-
-    // Inside Docker, localhost is the container, not the host Postgres from .env.
-    std::ifstream dockerenv("/.dockerenv");
-    if (dockerenv.good()) {
-        const std::string docker_host = "host.docker.internal";
-        for (const std::string& local_host : {"localhost", "127.0.0.1"}) {
-            const std::string from = "@" + local_host;
-            auto pos = url.find(from);
-            if (pos != std::string::npos) {
-                url.replace(pos + 1, local_host.size(), docker_host);
-                break;
-            }
-        }
-    }
-
-    return url;
+    return db_url;
 }
 
 pqxx::connection connect_to_db() {
