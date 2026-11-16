@@ -14,6 +14,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
   db:
     container_name: db
     image: postgres:18
@@ -33,8 +34,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  ngrok:
+    container_name: ngrok
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "http"
+      - "backend:18080"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    ports:
+      - "4040:4040"
+    depends_on:
+      - backend
+
 volumes:
   db_data:
-
-
-  
